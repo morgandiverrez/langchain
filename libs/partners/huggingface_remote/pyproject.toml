@@ -3,9 +3,9 @@ requires = ["poetry-core>=1.0.0", ]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-name = "langchain-huggingface_light"
+name = "langchain-huggingfaceremote"
 version = "0.0.3"
-description = "A light version integration package connecting Hugging Face and LangChain"
+description = "A only remote version integration package connecting Hugging Face and LangChain"
 authors = []
 readme = "README.md"
 repository = "https://github.com/langchain-ai/langchain"
@@ -15,7 +15,7 @@ license = "MIT"
 disallow_untyped_defs = "True"
 
 [tool.poetry.urls]
-"Source Code" = "https://github.com/langchain-ai/langchain/tree/master/libs/partners/huggingface_light"
+"Source Code" = "https://github.com/langchain-ai/langchain/tree/master/libs/partners/huggingface_remote"
 "Release Notes" = "https://github.com/langchain-ai/langchain/releases?q=tag%3A%22langchain-huggingface%3D%3D0%22&expanded=true"
 
 [tool.poetry.dependencies]

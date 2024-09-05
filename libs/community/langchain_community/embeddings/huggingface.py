@@ -2,6 +2,7 @@ import warnings
 from typing import Any, Dict, List, Optional
 
 import requests
+
 from langchain_core._api import deprecated, warn_deprecated
 from langchain_core.embeddings import Embeddings
 from langchain_core.pydantic_v1 import BaseModel, Field, SecretStr
@@ -22,7 +23,7 @@ DEFAULT_QUERY_BGE_INSTRUCTION_ZH = "为这个句子生成表示以用于检索�
 @deprecated(
     since="0.2.2",
     removal="1.0",
-    alternative_import="langchain_huggingface.HuggingFaceEmbeddings",
+    alternative_import="langchain_huggingfaceremote.HuggingFaceEmbeddings",
 )
 class HuggingFaceEmbeddings(BaseModel, Embeddings):
     """HuggingFace sentence_transformers embedding models.

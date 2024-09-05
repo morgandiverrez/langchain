@@ -2,16 +2,6 @@ from typing import Any, Dict, List  # type: ignore[import-not-found]
 from unittest.mock import MagicMock, Mock, patch
 
 import pytest  # type: ignore[import-not-found]
-from langchain_core.messages import (
-    AIMessage,
-    BaseMessage,
-    ChatMessage,
-    HumanMessage,
-    SystemMessage,
-)
-from langchain_core.outputs import ChatResult
-from langchain_core.tools import BaseTool
-
 from langchain_huggingface.chat_models import (  # type: ignore[import]
     TGI_MESSAGE,
     ChatHuggingFace,
@@ -21,6 +11,16 @@ from langchain_huggingface.chat_models import (  # type: ignore[import]
 from langchain_huggingface.llms.huggingface_endpoint import (
     HuggingFaceEndpoint,
 )
+
+from langchain_core.messages import (
+    AIMessage,
+    BaseMessage,
+    ChatMessage,
+    HumanMessage,
+    SystemMessage,
+)
+from langchain_core.outputs import ChatResult
+from langchain_core.tools import BaseTool
 
 
 @pytest.mark.parametrize(
@@ -93,7 +93,7 @@ def mock_llm() -> Mock:
 
 @pytest.fixture
 @patch(
-    "langchain_huggingface.chat_models.huggingface.ChatHuggingFace._resolve_model_id"
+    "langchain_huggingfaceremote.chat_models.huggingface.ChatHuggingFace._resolve_model_id"
 )
 def chat_hugging_face(mock_resolve_id: Any, mock_llm: Any) -> ChatHuggingFace:
     chat_hf = ChatHuggingFace(llm=mock_llm, tokenizer=MagicMock())
@@ -221,7 +221,7 @@ def test_bind_tools_errors(
     expected_message: str,
 ) -> None:
     with patch(
-        "langchain_huggingface.chat_models.huggingface.convert_to_openai_tool",
+            "langchain_huggingfaceremote.chat_models.huggingface.convert_to_openai_tool",
         side_effect=lambda x: x,
     ):
         with pytest.raises(expected_exception) as excinfo:
@@ -232,7 +232,7 @@ def test_bind_tools_errors(
 def test_bind_tools(chat_hugging_face: Any) -> None:
     tools = [MagicMock(spec=BaseTool)]
     with patch(
-        "langchain_huggingface.chat_models.huggingface.convert_to_openai_tool",
+            "langchain_huggingfaceremote.chat_models.huggingface.convert_to_openai_tool",
         side_effect=lambda x: x,
     ), patch("langchain_core.runnables.base.Runnable.bind") as mock_super_bind:
         chat_hugging_face.bind_tools(tools, tool_choice="auto")

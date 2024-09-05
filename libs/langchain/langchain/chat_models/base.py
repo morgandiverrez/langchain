@@ -19,6 +19,8 @@ from typing import (
     overload,
 )
 
+from typing_extensions import TypeAlias
+
 from langchain_core._api import beta
 from langchain_core.language_models import (
     BaseChatModel,
@@ -35,7 +37,6 @@ from langchain_core.runnables import Runnable, RunnableConfig
 from langchain_core.runnables.schema import StreamEvent
 from langchain_core.tools import BaseTool
 from langchain_core.tracers import RunLog, RunLogPatch
-from typing_extensions import TypeAlias
 
 __all__ = [
     "init_chat_model",
@@ -368,7 +369,7 @@ def _init_chat_model_helper(
 
         return ChatMistralAI(model=model, **kwargs)  # type: ignore[call-arg]
     elif model_provider == "huggingface":
-        _check_pkg("langchain_huggingface")
+        _check_pkg("langchain_huggingfaceremote")
         from langchain_huggingface import ChatHuggingFace
 
         return ChatHuggingFace(model_id=model, **kwargs)
